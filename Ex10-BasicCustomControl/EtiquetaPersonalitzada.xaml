@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Ex10_BasicCustomControl.EtiquetaPersonalitzada"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+    <Border x:Name="Contorn" BorderThickness="2" Padding="10">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="Gray" />
+        </Border.BorderBrush>
+        <TextBlock x:Name="TextEtiqueta" Text="Text per defecte" 
+                        FontSize="16" Foreground="DarkBlue"/>
+    </Border>
+</UserControl>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="Ex13_CustomSlider.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex13_CustomSlider"
+        mc:Ignorable="d"
+        Title="Ex13-CustomSlider" Height="450" Width="800">
+    <Grid>
+        <local:SelectorDeValor x:Name="SelectorValor" ValorMinim="0" ValorMaxim="100" 
+                               Valor="50" Width="200"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</Window>

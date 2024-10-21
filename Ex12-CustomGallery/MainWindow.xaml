@@ -1,0 +1,12 @@
+﻿<Window x:Class="Ex12_CustomGallery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex12_CustomGallery"
+        mc:Ignorable="d"
+        Title="Ex12-CustomGallery" Height="600" Width="800">
+    <Grid>
+        <local:GaleriaImatges DirectoriImatges="Images"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+    </Grid>
+</Window>
