@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -58,13 +59,33 @@ namespace Ex13_CustomSlider
         // Mètode per canviar el color en funció del valor
         private void ActualitzarColor(double valor)
         {
+            // Determina el nou color segons el valor
+            Color nouColor;
             if (valor < (ValorMaxim - ValorMinim) * 0.3)
-                TextBoxValor.Background = Brushes.LightGreen;
+                nouColor = Colors.LightGreen;
             else if (valor < (ValorMaxim - ValorMinim) * 0.7)
-                TextBoxValor.Background = Brushes.LightYellow;
+                nouColor = Colors.LightYellow;
             else
-                TextBoxValor.Background = Brushes.IndianRed;
+                nouColor = Colors.IndianRed;
+
+            // Crea una nova instància de SolidColorBrush per poder animar-la
+            SolidColorBrush newBrush = new SolidColorBrush(((SolidColorBrush)TextBoxValor.Background).Color);
+
+            // Assigna el nou SolidColorBrush al fons del TextBox
+            TextBoxValor.Background = newBrush;
+
+            // Crea l'animació del color
+            var colorAnim = new ColorAnimation
+            {
+                To = nouColor,
+                Duration = TimeSpan.FromMilliseconds(700)
+            };
+
+            // Aplica l'animació al SolidColorBrush
+            newBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnim);
         }
+
+
 
         // Event del Slider per canviar el valor
         private void SliderControl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

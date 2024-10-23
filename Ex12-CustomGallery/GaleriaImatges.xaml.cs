@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
@@ -67,9 +68,18 @@ namespace Ex12_CustomGallery
 
             Imatge.Source = new BitmapImage(new Uri(_imatges[_index], UriKind.Absolute));
 
-            // Animació de transició (dissolució)
-            var anim = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
-            Imatge.BeginAnimation(UIElement.OpacityProperty, anim);
+            // Animació de dissolució
+            var opacityAnim = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+            // Animació de desplaçament (desplaça des de la dreta a la seva posició original)
+            var translateAnim = new DoubleAnimation(100, 0, TimeSpan.FromSeconds(0.5));
+
+            // Crea una transformació de desplaçament per a la imatge
+            var translateTransform = new TranslateTransform();
+            Imatge.RenderTransform = translateTransform;
+
+            // Aplica les animacions
+            Imatge.BeginAnimation(UIElement.OpacityProperty, opacityAnim);
+            translateTransform.BeginAnimation(TranslateTransform.XProperty, translateAnim);
         }
 
         private void Anterior_Click(object sender, RoutedEventArgs e)

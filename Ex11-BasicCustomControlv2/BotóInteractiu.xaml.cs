@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -31,17 +32,53 @@ namespace Ex11_BasicCustomControlv2
         private void Botó_MouseEnter(object sender, MouseEventArgs e)
         {
             Contorn.Background = Brushes.LightBlue;
-            Botó.Width += 20;
-            Botó.Height += 20;
-            Botó.FontSize += 10;
+
+            var fontSizeAnimEnter = new DoubleAnimation
+            {
+                To = Botó.FontSize + 10, // Nou valor de mida (ample o alt)
+                Duration = TimeSpan.FromMilliseconds(500) // Duració de l'animació
+            };
+            var widthAnimEnter = new DoubleAnimation
+            {
+                To = Botó.Width + 20, // Nou valor de mida (ample o alt)
+                Duration = TimeSpan.FromMilliseconds(500) // Duració de l'animació
+            };
+            var heightAnimEnter = new DoubleAnimation
+            {
+                To = Botó.Height + 20, // Nou valor de mida (ample o alt)
+                Duration = TimeSpan.FromMilliseconds(500) // Duració de l'animació
+            };
+
+            // Aplica les animacions
+            Botó.BeginAnimation(Control.FontSizeProperty, fontSizeAnimEnter);
+            Botó.BeginAnimation(FrameworkElement.WidthProperty, widthAnimEnter);
+            Botó.BeginAnimation(FrameworkElement.HeightProperty, heightAnimEnter);
         }
 
         private void Botó_MouseLeave(object sender, MouseEventArgs e)
         {
             Contorn.Background = Brushes.White;
-            Botó.Width -= 20;
-            Botó.Height -= 20;
-            Botó.FontSize -= 10;
+
+            var fontSizeAnimEnter = new DoubleAnimation
+            {
+                To = Botó.FontSize - 10, // Nou valor de mida (ample o alt)
+                Duration = TimeSpan.FromMilliseconds(500) // Duració de l'animació
+            };
+            var widthAnimEnter = new DoubleAnimation
+            {
+                To = Botó.Width - 20, // Nou valor de mida (ample o alt)
+                Duration = TimeSpan.FromMilliseconds(500) // Duració de l'animació
+            };
+            var heightAnimEnter = new DoubleAnimation
+            {
+                To = Botó.Height - 20, // Nou valor de mida (ample o alt)
+                Duration = TimeSpan.FromMilliseconds(500) // Duració de l'animació
+            };
+
+            // Aplica les animacions.
+            Botó.BeginAnimation(Control.FontSizeProperty, fontSizeAnimEnter);
+            Botó.BeginAnimation(FrameworkElement.WidthProperty, widthAnimEnter);
+            Botó.BeginAnimation(FrameworkElement.HeightProperty, heightAnimEnter);
         }
 
         private void Botó_Click(object sender, RoutedEventArgs e)

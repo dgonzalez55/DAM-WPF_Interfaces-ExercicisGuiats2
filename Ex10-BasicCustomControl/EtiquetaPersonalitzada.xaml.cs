@@ -13,6 +13,7 @@ namespace Ex10_BasicCustomControl
     {
         public EtiquetaPersonalitzada()
         {
+            AnimationMillis = 500;
             InitializeComponent();
             this.MouseEnter += Contorn_MouseEnter;
             this.MouseLeave += Contorn_MouseLeave;
@@ -36,13 +37,21 @@ namespace Ex10_BasicCustomControl
             set => Contorn.BorderThickness = new Thickness(value);
         }
 
+        private TimeSpan _animationDuration;
+
+        public double AnimationMillis
+        {
+            get => _animationDuration.TotalMilliseconds;
+            set => _animationDuration = TimeSpan.FromMilliseconds(value);
+        }
+
         private void Contorn_MouseEnter(object sender, MouseEventArgs e)
         {
             // Animació per canviar el color del contorn a blau de forma suau
             var colorAnimEnter = new ColorAnimation
             {
                 To = Colors.Blue,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = _animationDuration
             };
             (Contorn.BorderBrush as SolidColorBrush)?.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimEnter);
         }
@@ -53,7 +62,7 @@ namespace Ex10_BasicCustomControl
             var colorAnimLeave = new ColorAnimation
             {
                 To = Colors.Gray,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = _animationDuration
             };
             (Contorn.BorderBrush as SolidColorBrush)?.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimLeave);
         }
